@@ -21,20 +21,60 @@ const pool = new Pool({
  }
 });
 
-pool.query(`SELECT * FROM utilisateurs;`, (err, res) => {
-    if (err) {
-        console.log("Error - Failed to select all from Users");
-        console.log(err);
-    }
-    else{
-        console.log(res.rows);
-    }
-});
+
 
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
+
+app.get("/utilisateurs", (req, res) => {
+  pool.query(`SELECT * FROM utilisateurs;`, (err, data) => {
+    if (err) {
+        console.log("Error - Failed to select all from Users");
+        console.log(err);
+    }
+    else{
+        console.log(data.rows);
+        data.rows.forEach(element => {
+          element.datasefrom = "Utilisateur"
+        });
+        res.json(data.rows);
+    }
+  });
+});
+
+
+app.post("/utilisateurs/:nom", (req, res) => {
+  requeteSQL = "INSERT INTO utilisateurs(nom) VALUES('" + req.params.nom + " ')"
+  pool.query(requeteSQL, (err, data) => {
+    if (err) {
+        console.log("Error - Failed to select all from Users");
+        console.log(err);
+    }
+    else{
+        console.log("Utilisateur ajouté avec succés");
+    }
+  });
+});
+
+
+app.get("/sauveteurs", (req, res) => {
+  pool.query(`SELECT * FROM sauveteurs;`, (err, data) => {
+    if (err) {
+        console.log("Error - Failed to select all from Users");
+        console.log(err);
+    }
+    else{
+        console.log(data.rows);
+        data.rows.forEach(element => {
+          element.datasefrom = "Sauveteur"
+        });
+        res.json(data.rows);
+    }
+  });
+});
+
 
 
 
