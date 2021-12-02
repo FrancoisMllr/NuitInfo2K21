@@ -1,0 +1,26 @@
+{
+  "name": "NuitInfo2K21",
+  "version": "1.0.0",
+  "description": "Projet team Alph-Fra-Tory pour la nuit de l'info 2021",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon serveur/serveur.js",
+    "build": "cd client && npm install && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selligtom/NuitInfo2K21.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/selligtom/NuitInfo2K21/issues"
+  },
+  "homepage": "https://github.com/selligtom/NuitInfo2K21#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15"
+  }
+}
