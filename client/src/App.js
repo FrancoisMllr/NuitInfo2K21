@@ -1,7 +1,6 @@
 import {React, useEffect, useState} from 'react';
 import './App.css';
 import SearchEngine from './Components/SearchEngine/SearchEngine';
-import AjouterInfos from './Components/AjouterInfos/ajouterInfos';
 
 const App = () => {
   const [listeSauveteurs, setListeSauveteurs] = useState()

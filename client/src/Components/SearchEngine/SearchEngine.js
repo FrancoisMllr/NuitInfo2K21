@@ -3,10 +3,7 @@ import TextField from '@mui/material/TextField';
 
 const SearchEngine = (props) => {
     const [chercherPersonne, setChercherPersonne] = useState(null)
-    useEffect(() => {
-        console.log(props);
-    },[])
-
+    
     return(
         <>
         <br/><br/>

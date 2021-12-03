@@ -7,7 +7,6 @@ const {Pool} = require("pg");
 
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
-
 // Connection à PG
 const pool = new Pool({
     user: 'qsusembbvstvbj',
@@ -20,12 +19,6 @@ const pool = new Pool({
  }
 });
 
-
-
-
-app.get("/api", (req, res) => {
-  res.json({ message: "Hello from server!" });
-});
 
 app.get("/utilisateurs", (req, res) => {
   pool.query(`SELECT * FROM utilisateurs;`, (err, data) => {
@@ -147,9 +140,6 @@ app.put("/admin/verif/rejeter/:idpersonne", (req, res) => {
     }
   });
 });
-
-
-
 
 
 app.get('*', (req, res) => {
