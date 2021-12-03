@@ -1,6 +1,5 @@
 const path = require('path');
 const express = require('express');
-
 const PORT = 3001;
 
 const app = express();
@@ -148,8 +147,6 @@ app.put("/admin/verif/rejeter/:idpersonne", (req, res) => {
     }
   });
 });
-
-
 
 
 

@@ -9,11 +9,12 @@ const SearchEngine = (props) => {
 
     return(
         <>
-            <p>Moteur de recherche</p>
+        <br/><br/>
+            <h2>Moteur de recherche</h2>
 
-            <TextField fullWidth id="outlined-basic" label="Chercher une personne" variant="outlined" value={chercherPersonne} onChange={(e) => setChercherPersonne(e.target.value)}/>
+            <TextField fullWidth id="outlined-basic" label="Chercher une personne (exemple : AGEZ)" variant="outlined" value={chercherPersonne} onChange={(e) => setChercherPersonne(e.target.value)}/>
 
-            <p>Résultats de la recherche :</p> 
+            <p>Résultats de la recherche (METTRE LES MAJUSCULES si nécessaire) :</p> 
 
             {
                 chercherPersonne && chercherPersonne.length > 0 ? 
@@ -23,7 +24,7 @@ const SearchEngine = (props) => {
                     props.sauveteurs.filter((sauveteur) => {return sauveteur.nom.search(chercherPersonne) != -1} )
                     .map(sauveteur => {
                             return(
-                                <p key={sauveteur.id} >{sauveteur.nom} ( {sauveteur.datasefrom } )</p>
+                                <p key={sauveteur.id} >{sauveteur.nom} {sauveteur.prenom} ( {sauveteur.datasefrom } )</p>
                             )
                     })
                     : <p>Aucun résultat</p>
