@@ -9,17 +9,32 @@ import {
   Route
 } from "react-router-dom";
 import SearchEngine from './Components/SearchEngine/SearchEngine';
+import Dashboard from './Components/Administration/Dashboard/Dashboard';
+import Navbar from './Components/Navbar/Navbar';
+import AjouterInfos from './Components/AjouterInfos/ajouterInfos';
 
 ReactDOM.render(
   <React.StrictMode>
+          
+
      <Router>
+       <Navbar />
         <Switch>
-         
-          <Route path="/search">
+          
+
+        <Route exact path="/add">
+            <AjouterInfos />
+          </Route>
+
+          <Route exact path="/search">
             <SearchEngine />
           </Route>
 
-          <Route path="/">
+          <Route exact path="/admin">
+            <Dashboard />
+          </Route>
+
+          <Route exact path="/">
             <App />
           </Route>
 

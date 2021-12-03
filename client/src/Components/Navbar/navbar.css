@@ -1,0 +1,15 @@
+.resultats-box{
+    display: block;
+    top: 64px;
+    background-color: black;
+    width: 100%;
+    height: calc(100% - 64px);
+    position: absolute;
+    z-index: 10000;
+}
+
+.resultats-box p{
+    color: white;
+    padding: 15px;
+    font-size: x-large;
+}

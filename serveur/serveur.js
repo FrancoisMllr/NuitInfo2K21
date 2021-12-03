@@ -60,10 +60,12 @@ app.post("/utilisateurs/:nom", (req, res) => {
 
 
 app.get("/sauveteurs", (req, res) => {
-  pool.query(`SELECT * FROM sauveteurs;`, (err, data) => {
+  pool.query(`SELECT * FROM sauveteurs WHERE verif = true;`, (err, data) => {
     if (err) {
         console.log("Error - Failed to select all from Users");
         console.log(err);
+        res.json("Error - Failed to select all from Users")
+       
     }
     else{
         console.log(data.rows);
@@ -74,6 +76,81 @@ app.get("/sauveteurs", (req, res) => {
     }
   });
 });
+
+
+app.post("/sauveteurs/:nom/:prenom", (req, res) => {
+  requeteSQL = "INSERT INTO sauveteurs(nom, prenom) VALUES('" + req.params.nom + "', '" + req.params.prenom + " ')"
+  pool.query(requeteSQL, (err, data) => {
+    if (err) {
+        console.log("Error - Failed to select all from Users");
+        console.log(err);
+        res.json("Error - Failed to select all from Users")
+    }
+    else{
+        console.log("Utilisateur ajouté avec succés");
+        res.json("Utilisateur ajouté avec succés")
+
+    }
+  });
+});
+
+
+app.get("/admin/verif", (req, res) => {
+  pool.query(`SELECT * FROM sauveteurs WHERE verif = false;`, (err, data) => {
+    if (err) {
+        console.log("Error - Failed to select all from Users");
+        console.log(err);
+        res.json("Error - Failed to select all from Users")
+       
+    }
+    else{
+        // console.log(data.rows);
+        // data.rows.forEach(element => {
+        //   element.datasefrom = "Sauveteur"
+        // });
+        res.json(data.rows);
+    }
+  });
+});
+
+
+
+// Route pour valider l'ajout d'une personne de la part d'un membre de la communauté
+app.put("/admin/verif/valider/:idpersonne", (req, res) => {
+  requete = "UPDATE sauveteurs SET verif = true WHERE id = '" + req.params.idpersonne + "'"
+ 
+  pool.query(requete, (err, data) => {
+    if (err) {
+        console.log("Error - Failed to select all from Users");
+        console.log(err);
+        res.json("Error - Failed to select all from Users")
+       
+    }
+    else{
+      res.json("Cette demande a bien été acceptée");
+
+    }
+  });
+});
+
+
+// Route pour rejeter l'ajout d'une personne de la part d'un membre de la communauté
+app.put("/admin/verif/rejeter/:idpersonne", (req, res) => {
+  requete = "DELETE FROM sauveteurs WHERE id = '" + req.params.idpersonne + "'"
+  pool.query(requete, (err, data) => {
+    if (err) {
+        console.log("Error - Failed to select all from Users");
+        console.log(err);
+        res.json("Error - Failed to select all from Users")
+    }
+    else{
+        res.json("Cette demande a bien été rejetée");
+    }
+  });
+});
+
+
+
 
 
 
